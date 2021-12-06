@@ -1,3 +1,18 @@
 micronaut:
   application:
-    name: weatherDB
+    name: ServiceWeather
+
+datasources:
+  default:
+    url: jdbc:mysql://localhost:3306/weatherdb?serverTimezone=Europe/Berlin
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: weatherdb
+    password: 'Control!123'
+
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl: 
+          auto: update
+        show_sql: true

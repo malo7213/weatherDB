@@ -3,4 +3,4 @@ defaultPackage: de.malosoft.weather.svc
 testFramework: junit
 sourceLanguage: java
 buildTool: maven
-features: [app-name, http-client, java, java-application, junit, logback, maven, netty-server, readme, shade, yaml]
+features: [app-name, http-client, java, java-application, jdbc-hikari, junit, logback, maven, mysql, netty-server, readme, shade, yaml]
