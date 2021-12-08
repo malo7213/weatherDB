@@ -1,11 +1,13 @@
 package de.malosoft.weather.svc;
 
+import java.util.Date;
 import java.util.List;
 
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.scheduling.TaskExecutors;
@@ -31,10 +33,17 @@ public class WeatherController {
 	public List<WeatherEntry> getAllValues() {
 		return weatherRepository.findAll();
 	}
+
+	@Get("/allValues/{sender}")
+	public List<WeatherEntry> getAllValues(@PathVariable String sender) {
+		return weatherRepository.findAll(sender);
+	}
 	
 	@Post("/newData")
-	public HttpStatus newData(@Body WeatherEntry newEntry) { 
-		weatherRepository.save(newEntry);
+	public HttpStatus newData(@Body WeatherDAO newEntry) {
+		
+		WeatherEntry we = new WeatherEntry(new Date().getTime(), newEntry);
+		weatherRepository.save(we);
 		return HttpStatus.CREATED;
 	}
 
