@@ -29,6 +29,7 @@ public class WeatherController {
         return "ServiceWeather is started";
     }
 
+
 	@Get("/allValues")
 	public List<WeatherEntry> getAllValues() {
 		return weatherRepository.findAll();

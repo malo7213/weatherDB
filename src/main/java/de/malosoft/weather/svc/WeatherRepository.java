@@ -20,7 +20,7 @@ public class WeatherRepository {
 
 	@ReadOnly
 	public List<WeatherEntry> findAll() {
-		return entityManager.createQuery("select w from WeatherEntry w", WeatherEntry.class).getResultList();
+		return entityManager.createQuery("select w from WeatherEntry w order by id asc", WeatherEntry.class).setMaxResults(3600).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
