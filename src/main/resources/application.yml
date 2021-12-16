@@ -1,10 +1,16 @@
 micronaut:
   application:
     name: ServiceWeather
+  router:
+    static-resources:
+      main:
+        paths: classpath:views
+        mapping: /weather/**
 
 datasources:
   default:
     url: jdbc:mysql://weather_db:3306/weatherdb?serverTimezone=Europe/Berlin
+#    url: jdbc:mysql://localhost:3306/weatherdb?serverTimezone=Europe/Berlin
     driverClassName: com.mysql.cj.jdbc.Driver
     username: weatherdb
     password: 'Control!123'

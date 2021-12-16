@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>My Data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  </head>
+  <body>
+	<div>
+		<canvas id="myChart"></canvas>
+		<script>
+			// === include 'setup' then 'config' above ===
+			
+			$.getJSON('http://217.160.191.228:8090/weather/allValues', function(jsonData) {
+				
+				var labels = jsonData.map(function(e) {
+					return new Date(e.timestamp).toLocaleString('de-DE');
+				})
+				
+				var tempValues = jsonData.map(function(e) {
+					return e.temperature;
+				})
+
+				var humidityValues = jsonData.map(function(e) {
+					return e.humidity;
+				})
+
+				
+				const data = {
+					labels : labels,
+					datasets : [ {
+						label : 'Temperature',
+						backgroundColor : 'rgb(255, 99, 132)',
+						borderColor : 'rgb(255, 99, 132)',
+						data : tempValues,
+					},
+					{
+						label : 'Humidity',
+						backgroundColor : 'rgb(0, 0, 255)',
+						borderColor : 'rgb(0, 0, 255)',
+						data : humidityValues,
+					}
+					]
+				};
+
+				const config = {
+					type : 'line',
+					data : data,
+					options : {}
+				};
+
+				const myChart = new Chart(document.getElementById('myChart'), config);
+			});
+				
+		</script>
+	</div>
+  </body>
+</html>
