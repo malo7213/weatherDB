@@ -10,6 +10,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Produces;
+import io.micronaut.http.annotation.QueryValue;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
 
@@ -40,6 +41,11 @@ public class WeatherController {
 		return weatherRepository.findAll(sender);
 	}
 	
+	@Get("/getLastValues/{numEntries}")
+	public List<WeatherEntry> getLastValues(@QueryValue Long numEntries) {
+		return weatherRepository.getLastValues(numEntries);
+	}
+
 	@Post("/newData")
 	public HttpStatus newData(@Body WeatherDAO newEntry) {
 		

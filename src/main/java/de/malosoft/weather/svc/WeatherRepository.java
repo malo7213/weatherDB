@@ -20,9 +20,19 @@ public class WeatherRepository {
 
 	@ReadOnly
 	public List<WeatherEntry> findAll() {
-		return entityManager.createQuery("select w from WeatherEntry w order by id asc", WeatherEntry.class).setMaxResults(1440).getResultList();
+		return entityManager.createQuery("select w from WeatherEntry w order by id asc", WeatherEntry.class).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@ReadOnly
+	public List<WeatherEntry> getLastValues(Long numEntries) {
+		Query query = entityManager.createNamedQuery("WeatherEntry.getLastEntries");
+		query.setParameter(1, numEntries);
+
+		return (List<WeatherEntry>)query.getResultList();
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	@ReadOnly
 	public List<WeatherEntry> findAll(String sender) {
