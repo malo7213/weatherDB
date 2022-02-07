@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "weathercontrol")
 @NamedQuery(name="WeatherEntry.getAllValuesForSender", query="select w from WeatherEntry w where w.sender = ?1")
-@NamedQuery(name="WeatherEntry.getLastEntries", query="select w from WeatherEntry w where w.id > (select (max(j.id) - ?1) from WeatherEntry j)")
+@NamedQuery(name="WeatherEntry.getLastEntries", query="select w from WeatherEntry w where w.id > (select (max(j.id) - ?1) from WeatherEntry j) and w.sender = ?2")
 public class WeatherEntry {
 	
     @Id

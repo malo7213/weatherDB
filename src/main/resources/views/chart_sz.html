@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
-	$.getJSON('http://217.160.191.228:8090/weather/getLastValues/1440', function(jsonData) {
+	$.getJSON('http://217.160.191.228:8090/weather/getLastValues/2880/5CCF7FB970FB', function(jsonData) {
 		
 		var labels = jsonData.map(function(e) {
 			return new Date(e.timestamp).toLocaleString('de-DE');

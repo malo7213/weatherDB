@@ -25,9 +25,10 @@ public class WeatherRepository {
 
 	@SuppressWarnings("unchecked")
 	@ReadOnly
-	public List<WeatherEntry> getLastValues(Long numEntries) {
+	public List<WeatherEntry> getLastValues(Long numEntries, String sender) {
 		Query query = entityManager.createNamedQuery("WeatherEntry.getLastEntries");
 		query.setParameter(1, numEntries);
+		query.setParameter(2, sender);
 
 		return (List<WeatherEntry>)query.getResultList();
 	}

@@ -41,9 +41,9 @@ public class WeatherController {
 		return weatherRepository.findAll(sender);
 	}
 	
-	@Get("/getLastValues/{numEntries}")
-	public List<WeatherEntry> getLastValues(@QueryValue Long numEntries) {
-		return weatherRepository.getLastValues(numEntries);
+	@Get("/getLastValues/{numEntries}/{sender}")
+	public List<WeatherEntry> getLastValues(@QueryValue Long numEntries, @QueryValue String sender) {
+		return weatherRepository.getLastValues(numEntries, sender);
 	}
 
 	@Post("/newData")
